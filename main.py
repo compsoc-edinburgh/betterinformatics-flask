@@ -1,3 +1,5 @@
+from betterinformatics import BI
 from betterinformatics import app
 
-app.run(debug=True)
+bi = BI(app, debug=True)
+bi.run()
