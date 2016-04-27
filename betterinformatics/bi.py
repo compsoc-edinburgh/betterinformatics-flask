@@ -1,4 +1,7 @@
 import yaml
+import os.path
+
+from flask import redirect
 
 from betterinformatics.page import Page
 
@@ -24,9 +27,6 @@ class BI(object):
         """Loads configuration based on the given path."""
         # TODO: put defaults here.
 
-        if not config_path:
-            return
-
         try:
             f = open(config_path, 'r')
             config = yaml.load(f)
@@ -41,11 +41,20 @@ class BI(object):
         self.pages = config["pages"]
 
     def gen_views(self):
-        print("# Generating views!")
+        self.app.add_url_rule("/", 'index', self.index)
+
+        print("# Generating page views!")
         for page in self.pages:
             print("## Generating: " + page)
+            path = os.path.join(self.pages_path, page + ".md")
             self.app.add_url_rule("/" + page,
-                                  view_func=Page.as_view(page, md_path=page))
+                                  view_func=Page.as_view(page,
+                                                         page_name=page,
+                                                         md_path=path,
+                                                         pages=self.pages))
+
+    def index(self):
+        return redirect("/home")
 
     def run(self):
         """Runs the Flask application"""

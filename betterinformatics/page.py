@@ -7,24 +7,16 @@ import markdown
 
 class Page(View):
 
-    def __init__(self, md_path):
+    def __init__(self, page_name, md_path, pages):
         self.md_path = md_path
-        self.name = self.md_path
+        self.page_name = page_name
+        self.pages = pages
         self.load_content()
 
     def load_content(self):
-        self.content = """
-Chapter
-=======
-
-Section
--------
-
-* Item 1
-* Item 2
-"""
-        self.content = Markup(markdown.markdown(self.content))
+        with open(self.md_path, 'r') as f:
+            self.content = Markup(markdown.markdown(f.read()))
 
     def dispatch_request(self):
         # templates located in templates directory by default
-        return render_template('index.html', content=self.content)
+        return render_template('page.html', content=self.content)
