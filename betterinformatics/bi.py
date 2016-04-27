@@ -1,12 +1,13 @@
 import yaml
 import os.path
 
-from flask import redirect
+from flask import redirect, render_template
 
 from betterinformatics.page import Page
 
+
 class BI(object):
-    """Class generating views and pages for BetterInformatics.
+    """Class generating views and page_names for BetterInformatics.
 
     Args:
         app (Flask): pointer to a Flask app.
@@ -18,8 +19,8 @@ class BI(object):
     def __init__(self, app, config_path=None, debug=False):
         self.debug = debug
         self.app = app
-        self.pages = []
-        self.views = []
+        self.page_names = []
+        self.pages = {}
 
         self._load_config(config_path)
 
@@ -38,23 +39,29 @@ class BI(object):
         print(config)
         self.pages_path = config["general"]["pages_dir"]
         print(config["pages"])
-        self.pages = config["pages"]
+        self.page_names = config["pages"]
 
     def gen_views(self):
         self.app.add_url_rule("/", 'index', self.index)
 
         print("# Generating page views!")
-        for page in self.pages:
-            print("## Generating: " + page)
-            path = os.path.join(self.pages_path, page + ".md")
-            self.app.add_url_rule("/" + page,
-                                  view_func=Page.as_view(page,
-                                                         page_name=page,
-                                                         md_path=path,
-                                                         pages=self.pages))
+        for name in self.page_names:
+            print("## Generating: " + name)
+            path = os.path.join(self.pages_path, name + ".md")
+            p = Page(name, path)
+            p.read_content()
+            self.pages[name] = p
+            self.app.add_url_rule('/pages/<page>', view_func=self.bi_page)
+            # methods=['GET', 'PUT', 'DELETE'])
+
+    def bi_page(self, page):
+        p = self.pages[page]
+        name = p.get_name()
+        content = p.get_content()
+        return render_template("page.html", name=name, content=content)
 
     def index(self):
-        return redirect("/home")
+        return redirect("/pages/home")
 
     def run(self):
         """Runs the Flask application"""
