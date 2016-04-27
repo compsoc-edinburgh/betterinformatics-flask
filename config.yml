@@ -1,5 +1,6 @@
 general:
   pages_dir: "./pages"
+  index: home
 
 pages:
   - home

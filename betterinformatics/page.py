@@ -10,7 +10,6 @@ class Page(object):
     def __init__(self, name, md_path):
         self.md_path = md_path
         self.name = name
-        self.load_content()
 
     def read_content(self):
         with open(self.md_path, 'r') as f:

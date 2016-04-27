@@ -40,6 +40,7 @@ class BI(object):
         self.pages_path = config["general"]["pages_dir"]
         print(config["pages"])
         self.page_names = config["pages"]
+        self.index_page = config["general"]["index"]
 
     def gen_views(self):
         self.app.add_url_rule("/", 'index', self.index)
@@ -61,7 +62,7 @@ class BI(object):
         return render_template("page.html", name=name, content=content)
 
     def index(self):
-        return redirect("/pages/home")
+        return redirect("/pages/" + self.index_page)
 
     def run(self):
         """Runs the Flask application"""
