@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -8,48 +8,51 @@
         <meta name="description" content="BetterInformatics - page {{ name }}}">
         <link rel="icon" href="../../favicon.ico">
 
-        <link rel="stylesheet" type="text/css" href="../static/semantic/semantic.css">
+        <link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="../static/page.css">
     </head>
+
     <body>
-
-        <div class="ui fixed inverted menu">
-            <div class="ui container">
-                <a href="#" class="header item">
-                    <img class="logo" src="/static/assets/images/informatics_logo_small.png">
-                    Project Name
-                </a>
-                {% for page in pages %}
-                <a href="#" class="item">{{page}}</a>
-                {% endfor %}
-            </div>
-        </div>
-
-        <div class="ui main text container">
-            <h1 class="ui header">Semantic UI Fixed Template</h1>
-            <p>This is a basic fixed menu template using fixed size containers.</p>
-            <p>A text container is used for the main container, which is useful
-            for single column layouts</p>
-
-            {{ content }}
-        </div>
-
-        <div class="ui inverted vertical footer segment">
-            <div class="ui center aligned container">
-                <img src="/static/assets/images/informatics_logo_small.png"
-                     class="ui centered mini image">
-                <div class="ui horizontal inverted small divided link list">
-                    <a class="item" href="#">Site Map</a>
-                    <a class="item" href="#">Contact Us</a>
-                    <a class="item" href="#">Terms and Conditions</a>
-                    <a class="item" href="#">Privacy Policy</a>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed"
+                            data-toggle="collapse" data-target="#navbar"
+                            aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Better Informatics</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse"
+                     aria-expanded="false" style="height: 1px;">
+                    <ul class="nav navbar-nav">
+                        {% for page in pages %}
+                        {% if page == name %}
+                        <li class="active"><a href="./{{page}}" class="item">{{ page }}</a></li>
+                        {% else %}
+                        <li><a href="/{{page}}" class="item">{{ page }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                <div class="md-content">
+                    {{ content }}
+                </div>
+            </div>
+            <div class="row">
+                <a class="item" href="https://wiki.tardis.ed.ac.uk/index.php/Main_Page">The Tardis Project</a>
+            </div>
         </div>
-
-
     </body>
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../static/semantic/semantic.min.css">
-    <script src="../static/semantic/semantic.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
 </html>
