@@ -59,7 +59,8 @@ class BI(object):
         p = self.pages[page]
         name = p.get_name()
         content = p.get_content()
-        return render_template("page.html", name=name, content=content)
+        return render_template("page.html", name=name, content=content,
+                               pages=self.page_names)
 
     def index(self):
         return redirect("/pages/" + self.index_page)
