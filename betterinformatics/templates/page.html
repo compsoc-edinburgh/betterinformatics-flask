@@ -8,8 +8,8 @@
         <meta name="description" content="BetterInformatics - page {{ name }}}">
         <link rel="icon" href="../../favicon.ico">
 
-        <link rel="stylesheet" type="text/css" href="../static/bootstrap/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="../static/page.css">
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/page.css">
     </head>
 
     <body>
@@ -31,9 +31,9 @@
                     <ul class="nav navbar-nav">
                         {% for page in pages %}
                         {% if page == name %}
-                        <li class="active"><a href="./{{page}}" class="item">{{ page }}</a></li>
+                        <li class="active"><a href="/pages/{{page}}" class="item">{{ page }}</a></li>
                         {% else %}
-                        <li><a href="./{{page}}" class="item">{{ page }}</a></li>
+                        <li><a href="/pages/{{page}}" class="item">{{ page }}</a></li>
                         {% endif %}
                         {% endfor %}
                     </ul>
@@ -44,8 +44,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-primary-outline btn-lg">
-                        Edit this page</button>
+                    <form action="/pages/{{name}}/edit" method="post">
+                        <button class="btn btn-primary-outline btn-lg"
+                                type="submit">
+                            Edit this page
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="row">
@@ -69,5 +73,5 @@
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </html>

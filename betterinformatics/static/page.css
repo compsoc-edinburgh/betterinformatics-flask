@@ -2,6 +2,7 @@
 
 /* Sticky footer styles
 -------------------------------------------------- */
+
 html {
   position: relative;
   min-height: 100%;
@@ -20,9 +21,8 @@ body {
 }
 
 
-/* Custom page CSS
+/* Custom page
 -------------------------------------------------- */
-/* Not required for template or sticky footer method. */
 
 body > .container {
   padding: 60px 15px 0;

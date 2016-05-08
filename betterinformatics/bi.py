@@ -52,7 +52,11 @@ class BI(object):
             p = Page(name, path)
             p.read_content()
             self.pages[name] = p
-            self.app.add_url_rule('/pages/<page>', view_func=self.bi_page)
+            self.app.add_url_rule('/pages/<page>', methods=['get', 'post'],
+                                  view_func=self.bi_page)
+            self.app.add_url_rule('/pages/<page>/edit',
+                                  methods=['get', 'post'],
+                                  view_func=self.edit_page)
             # methods=['GET', 'PUT', 'DELETE'])
 
     def bi_page(self, page):
@@ -60,6 +64,13 @@ class BI(object):
         name = p.get_name()
         content = p.get_content()
         return render_template("page.html", name=name, content=content,
+                               pages=self.page_names)
+
+    def edit_page(self, page):
+        p = self.pages[page]
+        name = p.get_name()
+        content = p.get_content()
+        return render_template("edit.html", name=name, content=content,
                                pages=self.page_names)
 
     def index(self):
