@@ -33,7 +33,7 @@
                         {% if page == name %}
                         <li class="active"><a href="./{{page}}" class="item">{{ page }}</a></li>
                         {% else %}
-                        <li><a href="/{{page}}" class="item">{{ page }}</a></li>
+                        <li><a href="./{{page}}" class="item">{{ page }}</a></li>
                         {% endif %}
                         {% endfor %}
                     </ul>
@@ -43,14 +43,29 @@
 
         <div class="container">
             <div class="row">
-                <div class="md-content">
-                    {{ content }}
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-primary-outline btn-lg">
+                        Edit this page</button>
                 </div>
             </div>
             <div class="row">
-                <a class="item" href="https://wiki.tardis.ed.ac.uk/index.php/Main_Page">The Tardis Project</a>
+                <div class="col-md-12 col-sm-offset-2">
+                    <div class="md-content">
+                        {{ content }}
+                    </div>
+                </div>
             </div>
         </div>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">
+                    <a href="https://wiki.tardis.ed.ac.uk/index.php/Main_Page">
+                        The Tardis Project
+                    </a>
+                </p>
+            </div>
+        </footer>
     </body>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
