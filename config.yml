@@ -1,6 +1,8 @@
 general:
   pages_dir: "./pages"
   index: home
+  host: "127.0.0.1"
+  debug: True
 
 pages:
   - home

@@ -16,8 +16,7 @@ class BI(object):
             Defaults to False.
     """
 
-    def __init__(self, app, config_path=None, debug=False):
-        self.debug = debug
+    def __init__(self, app, config_path=None):
         self.app = app
         self.page_names = []
         self.pages = {}
@@ -38,6 +37,9 @@ class BI(object):
 
         print(config)
         self.pages_path = config["general"]["pages_dir"]
+        self.debug = config["general"]["debug"]
+        self.host = config["general"]["host"]
+
         print(config["pages"])
         self.page_names = config["pages"]
         self.index_page = config["general"]["index"]
@@ -90,4 +92,4 @@ class BI(object):
 
     def run(self):
         """Runs the Flask application"""
-        self.app.run(debug=self.debug)
+        self.app.run(host=self.host, debug=self.debug)
