@@ -44,10 +44,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <form action="/pages/{{name}}/edit" method="post">
+                    <form action="/pages/{{name}}/edit/publish" method="post">
                         <button class="btn btn-primary-outline btn-lg"
                                 type="submit">
-                            Edit this page
+                            Publish new changes
                         </button>
                     </form>
                 </div>
@@ -57,11 +57,11 @@
                     <div class="md-input">
                         <form class="form" role="form">
                             <div class="form-group">
-                                <label for="comment">Comment:</label>
-                                <textarea class="form-control" rows="20" id="comment"></textarea>
+                                <label for="comment">Editing page "{{name}}":</label>
+                                <textarea class="form-control" rows="20"
+                                          style="min-width: 100%" id="comment">{{content}}</textarea>
                             </div>
                         </form>
-                        {{ content }}
                     </div>
                 </div>
             </div>

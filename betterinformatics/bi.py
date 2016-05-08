@@ -69,7 +69,7 @@ class BI(object):
     def edit_page(self, page):
         p = self.pages[page]
         name = p.get_name()
-        content = p.get_content()
+        content = p.get_md()
         return render_template("edit.html", name=name, content=content,
                                pages=self.page_names)
 

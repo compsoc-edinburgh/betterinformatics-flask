@@ -13,7 +13,8 @@ class Page(object):
 
     def read_content(self):
         with open(self.md_path, 'r') as f:
-            self.content = Markup(markdown.markdown(f.read()))
+            self.md = f.read()
+            self.content = Markup(markdown.markdown(self.md))
 
     def write_content(self):
         with open(self.md_path, 'w') as f:
@@ -21,6 +22,9 @@ class Page(object):
 
     def get_content(self):
         return self.content
+
+    def get_md(self):
+        return self.md
 
     def get_name(self):
         return self.name
