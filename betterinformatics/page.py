@@ -11,14 +11,17 @@ class Page(object):
         self.md_path = md_path
         self.name = name
 
-    def read_content(self):
+    def load_content(self):
         with open(self.md_path, 'r') as f:
             self.md = f.read()
             self.content = Markup(markdown.markdown(self.md))
 
-    def write_content(self):
+    def write_md(self):
         with open(self.md_path, 'w') as f:
-            f.write(self.content)
+            f.write(self.md)
+
+    def update_md(self, md):
+        self.md = md
 
     def get_content(self):
         return self.content

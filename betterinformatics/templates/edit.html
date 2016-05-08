@@ -42,29 +42,29 @@
         </nav>
 
         <div class="container">
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <form action="/pages/{{name}}/edit/publish" method="post">
+            <form action="/pages/{{name}}/edit/publish" method="post">
+                <div class="row">
+                    <div class="col-md-12 text-center">
                         <button class="btn btn-primary-outline btn-lg"
                                 type="submit">
                             Publish new changes
                         </button>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-offset-2 col-md-8">
-                    <div class="md-input">
-                        <form class="form" role="form">
-                            <div class="form-group">
-                                <label for="comment">Editing page "{{name}}":</label>
-                                <textarea class="form-control" rows="20"
-                                          style="min-width: 100%" id="comment">{{content}}</textarea>
-                            </div>
-                        </form>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-sm-offset-2 col-md-8">
+                        <div class="md-input">
+                            <form class="form" role="form">
+                                <div class="form-group">
+                                    <label for="comment">Editing page "{{name}}":</label>
+                                    <textarea class="form-control" rows="20"
+                                              style="min-width: 100%" name="textarea">{{content}}</textarea>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
 
         <footer class="footer">
