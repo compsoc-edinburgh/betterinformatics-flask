@@ -66,7 +66,6 @@ class BI(object):
     def bi_page(self, page):
         p = self.pages[page]
         name = p.get_name()
-        p.load_content()
         content = p.get_content()
         return render_template("page.html", name=name, content=content,
                                pages=self.page_names)
