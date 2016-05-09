@@ -80,7 +80,6 @@ class BI(object):
 
     def publish_page(self, page):
         # get data
-        print("########## " + page)
         text = request.form['textarea']
         p = self.pages[page]
         p.update_md(text)

@@ -2,3 +2,4 @@ flask
 pyyaml
 markdown
 bleach
+bleach-whitelist

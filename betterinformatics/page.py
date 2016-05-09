@@ -1,8 +1,8 @@
-from flask.views import View
-from flask import render_template
 from flask import Markup
 
 import markdown
+import bleach
+from bleach_whitelist import markdown_tags, markdown_attrs, all_styles
 
 
 class Page(object):
@@ -14,7 +14,10 @@ class Page(object):
     def load_content(self):
         with open(self.md_path, 'r') as f:
             self.md = f.read()
-            self.content = Markup(markdown.markdown(self.md))
+            content = markdown.markdown(self.md)
+            clean = bleach.clean(content,
+                                 markdown_tags, markdown_attrs, all_styles)
+            self.content = Markup(clean)
 
     def write_md(self):
         with open(self.md_path, 'w') as f:
