@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+        <title>BetterInformatics - {{ name }}</title>
+        <meta name="description" content="BetterInformatics - page {{name}}">
+        <link rel="icon" href="../../favicon.ico">
+
+        <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="/static/page.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <form action="/login/check" method="post">
+                <h2 class="form-signin-heading">Welcome to BetterInformatics!</h2>
+                <p>Please answer to this question: {{question}}</p>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" name="password" id="password"
+                       class="form-control" placeholder="Password" required autofocus>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div> <!-- /container -->
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <p class="text-muted">
+                        <!-- that\'s right, it\'s a copyleft symbol : ) -->
+                        <!--[if lte ie 8]>
+                            <span style="filter: fliph; -ms-filter: "fliph"; display: inline-block;">
+                        <![endif]-->
+                        <span style="-moz-transform: scalex(-1);
+                                     -o-transform: scalex(-1);
+                                     -webkit-transform: scalex(-1);
+                                     transform: scalex(: -1px;);
+                                     display: inline-block;">
+                            &copy;
+                        </span>
+                        <!--[if lte ie 8]></span><![endif]-->
+                        <a href="https://wiki.tardis.ed.ac.uk/index.php/main_page">
+                            The Tardis Project
+                        </a>
+                        -
+                        <a href="https://github.com/edran/betterinformatics">
+                            Fork me on Github!
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+</html>
