@@ -52,12 +52,23 @@ class Page(object):
         # get next file and write old content
         name = datetime.datetime.strftime(datetime.datetime.now(),
                                           '%Y%m%d%H%M%S%f')
-        name += ".md"
-        # update history file
+        name = "r{0}-{1}.md".format(self.revision_num - 1, name)
         stamp_path = os.path.join(self.history_path, name)
+
+        # create stamp file
         with open(stamp_path, "w+") as f:
             f.write(self.previous_md)
             print("Saved {}".format(stamp_path))
+            self.revision_num += 1
+            self.revision_files.append(stamp_path)
+
+        # update history file
+        yaml_struct = {"revision_num": self.revision_num,
+                       "revision_files": self.revision_files}
+        yaml_dump = yaml.dump(yaml_struct)
+        with open(self.history_file, "w") as f:
+            f.write(yaml_dump)
+            print("Updated {}".format(self.history_path))
 
     def update_md(self, md):
         self.previous_md = self.md
