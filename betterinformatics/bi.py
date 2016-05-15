@@ -128,7 +128,7 @@ class BI(object):
             return resp
         else:
             flash("Wrong answer!")
-            return redirect(url_for("login"))
+            return redirect("/login")
 
     def index(self):
         if not self.check_cookie():
