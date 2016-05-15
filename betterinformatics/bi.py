@@ -54,6 +54,11 @@ class BI(object):
         self.question = config["sign-in"]["question"]
         self.password = config["sign-in"]["password"]
 
+        self.key_path = config["general"]["secret_key_path"]
+        with open(self.key_path, "r") as f:
+            self.secret_key = f.read()
+            self.app.secret_key = self.secret_key
+
     def gen_views(self):
         self.app.add_url_rule("/", 'index', self.index)
 

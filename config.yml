@@ -3,6 +3,7 @@ general:
   index: home
   host: "127.0.0.1"
   debug: True
+  secret_key_path: "./key.txt"
 
 sign-in:
   question: "Write test"
