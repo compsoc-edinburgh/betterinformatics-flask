@@ -8,9 +8,6 @@ from bleach_whitelist import markdown_tags, markdown_attrs, all_styles
 import yaml
 
 
-# data file needs to have:
-# revision: int
-
 class Page(object):
 
     def __init__(self, name, md_path, history_path, history_file):
@@ -59,7 +56,6 @@ class Page(object):
         with open(stamp_path, "w+") as f:
             f.write(self.previous_md)
             print("Saved {}".format(stamp_path))
-            self.revision_num += 1
             self.revision_files.append(stamp_path)
 
         # update history file
@@ -73,6 +69,7 @@ class Page(object):
     def update_md(self, md):
         self.previous_md = self.md
         self.previous_content = self.content  # use if needed to show diff
+        self.revision_num += 1
         self.md = md
         self.content = self.read_md(self.md)
 

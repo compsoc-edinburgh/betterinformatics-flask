@@ -74,16 +74,16 @@ class BI(object):
         p = self.pages[page]
         name = p.get_name()
         content = p.get_content()
-        revision = p.get_revision()
         return render_template("page.html", name=name, content=content,
-                               pages=self.page_names, revision=revision)
+                               pages=self.page_names)
 
     def edit_page(self, page):
         p = self.pages[page]
         name = p.get_name()
+        revision = p.get_revision()
         content = p.get_md()
         return render_template("edit.html", name=name, content=content,
-                               pages=self.page_names)
+                               pages=self.page_names, revision=revision)
 
     def publish_page(self, page):
         # get data
