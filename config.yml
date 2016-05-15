@@ -4,5 +4,9 @@ general:
   host: "127.0.0.1"
   debug: True
 
+history:
+  folder: "./pages/history"
+  file: "data-"
+
 pages:
   - home

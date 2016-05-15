@@ -40,6 +40,10 @@ class BI(object):
         self.debug = config["general"]["debug"]
         self.host = config["general"]["host"]
 
+        self.history_file = config["history"]["file"]
+        self.history_path = config["history"]["folder"]
+        assert(os.path.exists(self.history_path))  # TODO add err msg
+
         print(config["pages"])
         self.page_names = config["pages"]
         self.index_page = config["general"]["index"]
@@ -51,7 +55,10 @@ class BI(object):
         for name in self.page_names:
             print("## Generating: " + name)
             path = os.path.join(self.pages_path, name + ".md")
-            p = Page(name, path)
+            history_path = self.history_path
+            history_file = os.path.join(self.history_path,
+                                        self.history_file + name + ".yml")
+            p = Page(name, path, history_path, history_file)
             p.load_content()
             self.pages[name] = p
             self.app.add_url_rule('/pages/<page>', methods=['get', 'post'],
@@ -67,8 +74,9 @@ class BI(object):
         p = self.pages[page]
         name = p.get_name()
         content = p.get_content()
+        revision = p.get_revision()
         return render_template("page.html", name=name, content=content,
-                               pages=self.page_names)
+                               pages=self.page_names, revision=revision)
 
     def edit_page(self, page):
         p = self.pages[page]
