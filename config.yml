@@ -4,6 +4,10 @@ general:
   host: "127.0.0.1"
   debug: True
 
+sign-in:
+  question: "Write test"
+  password: "test"
+
 history:
   folder: "./pages/history"
   file: "data-"
