@@ -1,7 +1,8 @@
 general:
   pages_dir: "./pages"
   index: home
-  host: "127.0.0.1"
+  host: "localhost"
+  port: 8080
   debug: True
   secret_key_path: "./key.txt"
 

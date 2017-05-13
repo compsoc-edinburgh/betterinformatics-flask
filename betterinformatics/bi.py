@@ -40,6 +40,7 @@ class BI(object):
         self.pages_path = config["general"]["pages_dir"]
         self.debug = config["general"]["debug"]
         self.host = config["general"]["host"]
+        self.port = config["general"]["port"]
 
         self.history_file = config["history"]["file"]
         self.history_path = config["history"]["folder"]
@@ -142,7 +143,7 @@ class BI(object):
 
     def run(self):
         """Runs the Flask application"""
-        self.app.run(host=self.host, debug=self.debug)
+        self.app.run(host=self.host, port=self.port, debug=self.debug)
 
     def check_cookie(self):
         value = request.cookies.get("logged")
